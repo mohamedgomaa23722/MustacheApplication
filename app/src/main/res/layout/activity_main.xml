@@ -4,15 +4,103 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.Activity.MainActivity">
 
-    <TextView
+    <fragment
+        android:id="@+id/arFragment"
+        android:name="com.gomaa.mustacheapp.ui.Fragment.CameraFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/Recording_Layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginBottom="32dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="3"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:background="@drawable/storage_back">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/Storage"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:scaleType="center"
+                android:src="@mipmap/ic_launcher" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/StartRecording"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+
+            android:background="@drawable/record_button" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/filters"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_weight="1"
+            android:background="@drawable/filter_back"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_baseline_filter_vintage_24" />
+    </LinearLayout>
+
+    <Chronometer
+        android:id="@+id/Timer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/stroke"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp"
+        android:textColor="@color/white"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <RelativeLayout
+        android:id="@+id/Filter_Layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/stroke"
+        android:padding="@dimen/_5sdp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/Remove_Filter_View"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/FilterRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Remove_Filter_View"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/filter_item" />
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
